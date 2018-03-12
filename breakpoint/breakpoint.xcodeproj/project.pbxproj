@@ -29,6 +29,10 @@
 		D2600495204FB28600996F0F /* InsetTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2600494204FB28600996F0F /* InsetTextField.swift */; };
 		D2600497204FB59700996F0F /* ShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2600496204FB59700996F0F /* ShadowView.swift */; };
 		D2600499204FBA9800996F0F /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2600498204FBA9800996F0F /* AuthService.swift */; };
+		D2688FBC20550B9A000E8579 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2688FBB20550B9A000E8579 /* Group.swift */; };
+		D2688FBE2055164E000E8579 /* GroupFeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2688FBD2055164E000E8579 /* GroupFeedCell.swift */; };
+		D2688FC0205516CF000E8579 /* GroupFeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2688FBF205516CF000E8579 /* GroupFeedVC.swift */; };
+		D26BE60120564FE700A10EC9 /* UIViewControllerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26BE60020564FE700A10EC9 /* UIViewControllerExt.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +62,10 @@
 		D2600494204FB28600996F0F /* InsetTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsetTextField.swift; sourceTree = "<group>"; };
 		D2600496204FB59700996F0F /* ShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowView.swift; sourceTree = "<group>"; };
 		D2600498204FBA9800996F0F /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		D2688FBB20550B9A000E8579 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
+		D2688FBD2055164E000E8579 /* GroupFeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupFeedCell.swift; sourceTree = "<group>"; };
+		D2688FBF205516CF000E8579 /* GroupFeedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupFeedVC.swift; sourceTree = "<group>"; };
+		D26BE60020564FE700A10EC9 /* UIViewControllerExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExt.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				D25D0E002051146E009C716B /* UIViewExt.swift */,
+				D26BE60020564FE700A10EC9 /* UIViewControllerExt.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -92,6 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				D25D0E052051248E009C716B /* Message.swift */,
+				D2688FBB20550B9A000E8579 /* Group.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -142,6 +152,7 @@
 				D25D0DFB2050F5DB009C716B /* MeVC.swift */,
 				D25D0DFD2050FD7E009C716B /* CreatePostVC.swift */,
 				D21AB8CC205180360054C957 /* CreateGroupVC.swift */,
+				D2688FBF205516CF000E8579 /* GroupFeedVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -163,6 +174,7 @@
 				D25D0E02205122CE009C716B /* FeedCell.swift */,
 				D252042820523D4A00CB483F /* UserCell.swift */,
 				D252042A2052810B00CB483F /* GroupCell.swift */,
+				D2688FBD2055164E000E8579 /* GroupFeedCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -317,10 +329,14 @@
 				D25D0DFC2050F5DB009C716B /* MeVC.swift in Sources */,
 				D252042B2052810B00CB483F /* GroupCell.swift in Sources */,
 				D2600490204FB1AA00996F0F /* AuthVC.swift in Sources */,
+				D26BE60120564FE700A10EC9 /* UIViewControllerExt.swift in Sources */,
 				D260047A204F984500996F0F /* GroupVC.swift in Sources */,
+				D2688FC0205516CF000E8579 /* GroupFeedVC.swift in Sources */,
+				D2688FBE2055164E000E8579 /* GroupFeedCell.swift in Sources */,
 				D2600492204FB1F900996F0F /* LoginVC.swift in Sources */,
 				D2600499204FBA9800996F0F /* AuthService.swift in Sources */,
 				D2600476204F984500996F0F /* AppDelegate.swift in Sources */,
+				D2688FBC20550B9A000E8579 /* Group.swift in Sources */,
 				D252042920523D4A00CB483F /* UserCell.swift in Sources */,
 				D21AB8CD205180360054C957 /* CreateGroupVC.swift in Sources */,
 				D2600497204FB59700996F0F /* ShadowView.swift in Sources */,
