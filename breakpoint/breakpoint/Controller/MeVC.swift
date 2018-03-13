@@ -19,16 +19,19 @@ class MeVC: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        
+       
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.emailLabel.text = Auth.auth().currentUser?.email
+        
+ 
     }
 
     @IBAction func logOutBtnPressed(_ sender: Any) {
-        let logOutPopUP = UIAlertController(title: "Logout?", message: "Are you sure you want to log out?", preferredStyle: .actionSheet)
-        let logOutAction = UIAlertAction(title: "Logout?", style: .destructive) { (buttonTapped) in
+        
+        let logOutPopUP = UIAlertController(title: "Logout?", message: "Are you sure you want to log out?", preferredStyle: .alert)
+        logOutPopUP.addAction(UIAlertAction(title: "Logout?", style: .default, handler: { (buttonTapped) in
             do{
                 try Auth.auth().signOut()
                 let authVC = self.storyboard?.instantiateViewController(withIdentifier: "AuthVC") as? AuthVC
@@ -38,10 +41,17 @@ class MeVC: UIViewController {
                 
             }
             
-        }
-        logOutPopUP.addAction(logOutAction)
-        present(logOutPopUP, animated: true, completion: nil)
+        }))
+        
+        present(logOutPopUP, animated: true, completion:  {
+         
+            logOutPopUP.view.superview?.isUserInteractionEnabled = true
+            logOutPopUP.view.superview?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.backgroundTapped)))
+        })
     }
-    
+
+    @objc func backgroundTapped(){
+        self.dismiss(animated: true, completion: nil)
+    }
 
 }
