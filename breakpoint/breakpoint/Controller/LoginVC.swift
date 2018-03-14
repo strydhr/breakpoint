@@ -14,6 +14,8 @@ class LoginVC: UIViewController {
     
     @IBOutlet weak var passwordTextField: InsetTextField!
     
+  
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -34,8 +36,8 @@ class LoginVC: UIViewController {
                 } else {
                     print(String(describing: loginError?.localizedDescription))
                 }
-                
                 AuthService.instance.registerUser(withEmail: self.emailTextField.text!, andPassword: self.passwordTextField.text!, userCreateComplete: { (success, registrationError) in
+           
                     if success {
                         AuthService.instance.loginUser(withEmail: self.emailTextField.text!, andPassword: self.passwordTextField.text! , loginComplete: { (success, nil) in
                             print("User Registered!!")

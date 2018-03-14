@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		79D1564142F81B6FBA419DF6 /* Pods_breakpoint.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 439011CBD5AB682761523D03 /* Pods_breakpoint.framework */; };
 		D21AB8CD205180360054C957 /* CreateGroupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D21AB8CC205180360054C957 /* CreateGroupVC.swift */; };
+		D24E49322058C92B002196E6 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24E49312058C92B002196E6 /* Profile.swift */; };
 		D252042920523D4A00CB483F /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D252042820523D4A00CB483F /* UserCell.swift */; };
 		D252042B2052810B00CB483F /* GroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D252042A2052810B00CB483F /* GroupCell.swift */; };
 		D25D0DFC2050F5DB009C716B /* MeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25D0DFB2050F5DB009C716B /* MeVC.swift */; };
@@ -40,6 +41,7 @@
 		439011CBD5AB682761523D03 /* Pods_breakpoint.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_breakpoint.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D38D4A1D83766666FDE73B2 /* Pods-breakpoint.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-breakpoint.debug.xcconfig"; path = "Pods/Target Support Files/Pods-breakpoint/Pods-breakpoint.debug.xcconfig"; sourceTree = "<group>"; };
 		D21AB8CC205180360054C957 /* CreateGroupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroupVC.swift; sourceTree = "<group>"; };
+		D24E49312058C92B002196E6 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		D252042820523D4A00CB483F /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		D252042A2052810B00CB483F /* GroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupCell.swift; sourceTree = "<group>"; };
 		D25D0DFB2050F5DB009C716B /* MeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeVC.swift; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 			children = (
 				D25D0E052051248E009C716B /* Message.swift */,
 				D2688FBB20550B9A000E8579 /* Group.swift */,
+				D24E49312058C92B002196E6 /* Profile.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -343,6 +346,7 @@
 				D25D0DFE2050FD7E009C716B /* CreatePostVC.swift in Sources */,
 				D2600478204F984500996F0F /* FeedVC.swift in Sources */,
 				D2600495204FB28600996F0F /* InsetTextField.swift in Sources */,
+				D24E49322058C92B002196E6 /* Profile.swift in Sources */,
 				D260048E204FA1B300996F0F /* DataService.swift in Sources */,
 				D25D0E062051248E009C716B /* Message.swift in Sources */,
 			);
