@@ -7,12 +7,15 @@
 //
 
 import UIKit
+import Firebase
 
 class FeedVC: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
     var messageArray = [Message]()
+    //
+    var userArray = [User]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,12 +45,23 @@ extension FeedVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "FeedCell") as? FeedCell else
         { return UITableViewCell() }
-        let image = UIImage(named: "defaultProfileImage")
+        //let image = UIImage(named: "defaultProfileImage")
         let message = messageArray[indexPath.row]
-        
+        //
+
         DataService.instance.getUsername(forUID: message.senderId) { (returnedUsername) in
-            cell.configureCell(profileImage: image!, email: returnedUsername, content: message.content)
+            DataService.instance.getProfile(forUID: message.senderId, handler: { (getProfile) in
+                //let url = NSURL(string: getProfile)!
+                //let data = NSData(contentsOf: url as URL)!
+                //let image = UIImage(data: data as Data)
+                let image = UIImage(named: "defaultProfileImage")
+                
+                cell.configureCell(profileImage: image!, email: returnedUsername, content: message.content)
+            })
+           // cell.configureCell(profileImage: image!, email: returnedUsername, content: message.content)
         }
+//
+       
         
         return cell
     }

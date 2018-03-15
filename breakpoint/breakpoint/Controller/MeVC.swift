@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 
 
+
 class MeVC: UIViewController {
     
 
@@ -27,8 +28,19 @@ class MeVC: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.emailLabel.text = Auth.auth().currentUser?.email
+        //
+        //let storage = Storage.storage()
+        DataService.instance.getProfile(forUID: (Auth.auth().currentUser?.uid)!) { (getImage) in
+            let url = NSURL(string: getImage)!
+            let data = NSData(contentsOf: url as URL)!
+            self.profileImage.image = UIImage(data: data as Data)
+          
+           
+        }
+       
+   
         
- 
+        //
     }
     
     

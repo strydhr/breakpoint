@@ -61,10 +61,46 @@ class DataService{
         if detail != nil {
             
         }else{
-            REF_PROFILE.childByAutoId().updateChildValues(["uid":uid, "profileImage": imageFile])
+//            REF_USERS.childByAutoId().updateChildValues(["uid":uid, "profileImage": imageFile])
+//            imageCreated(true)
+            
+            REF_USERS.child(uid).updateChildValues(["profileImage": imageFile])
             imageCreated(true)
         }
         
+    }
+    
+    func getProfile(forUID uid: String, handler: @escaping(_ profile: String) -> ()){
+        REF_USERS.observeSingleEvent(of: .value) { (profileSnapshot) in
+            guard let profileSnapshot = profileSnapshot.children.allObjects as? [DataSnapshot] else { return }
+            for user in profileSnapshot {
+                if user.key == uid {
+                    //handler(user.childSnapshot(forPath: "email").value as! String)
+                    handler(user.childSnapshot(forPath: "profileImage").value as! String)
+                    
+                }
+            }
+        }
+        
+    }
+    
+    func getUsersProfile(forUID uid: String, handler: @escaping (_ profile:[User]) ->()){
+        var userArray = [User]()
+        REF_USERS.child(uid).observeSingleEvent(of: .value) { (allUserSnapshot) in
+            
+            guard let allUserSnapshot = allUserSnapshot.children.allObjects as? [DataSnapshot] else { return}
+            
+            for user in allUserSnapshot {
+                if user.key == uid {
+                let email = user.childSnapshot(forPath: "email").value as! String
+                let profileImage = user.childSnapshot(forPath: "profileImage").value as! String
+                let user = User(email: email, profileImage: profileImage)
+                
+                userArray.append(user)
+                }
+            }
+            handler(userArray)
+        }
     }
     //
     func uploadPost(withMessage message: String, forUID uid: String, withGroupKey groupKey: String?, sendComplete: @escaping (_ status: Bool) -> ()) {
