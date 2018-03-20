@@ -14,35 +14,78 @@ import Firebase
 class MeVC: UIViewController {
     
 
-    @IBOutlet weak var profileImage: UIImageView!
+    @IBOutlet weak var profileImage: CircleImage!
     
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
+    //
+   
+    @IBOutlet weak var usernameTextField: UITextField!
+    @IBOutlet weak var editBtn: UIButton!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         profileImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(changeprofileimage)))
         profileImage.isUserInteractionEnabled = true
+        
+        usernameTextField.delegate = self
+        
+        editBtn.isHidden = true
+        
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.emailLabel.text = Auth.auth().currentUser?.email
         //
+        usernameTextField.addTarget(self, action: #selector(editfield), for: .editingChanged)
         //let storage = Storage.storage()
         DataService.instance.getProfile(forUID: (Auth.auth().currentUser?.uid)!) { (getImage) in
-            let url = NSURL(string: getImage)!
-            let data = NSData(contentsOf: url as URL)!
-            self.profileImage.image = UIImage(data: data as Data)
+            let imageChecker = getImage
+            
+            if imageChecker != "" {
+                let url = NSURL(string: imageChecker)!
+                ImageService.getImages(withURL: url as URL, completion: { (profileImage) in
+                    self.profileImage.image = profileImage
+                })
+//                let data = NSData(contentsOf: url as URL)!
+//                self.profileImage.image = UIImage(data: data as Data)
+                
+            }else{
+                self.profileImage.image = UIImage(named:"defaultProfileImage")
+             
+            }
+
           
            
         }
        
+        
    
         
         //
     }
     
+    @objc func editfield(){
+        if usernameTextField.text == ""{
+            editBtn.isHidden = true
+        }else {
+            editBtn.isHidden = false
+            
+        }
+    }
+    
+    @IBAction func editBtnPressed(_ sender: Any) {
+        if usernameTextField.text != "" {
+            DataService.instance.addProfileUsername(withUID: (Auth.auth().currentUser?.uid)!, username: usernameTextField.text!)
+        }
+    
+        //usernameTextField.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(backgroundTapped)))
+    }
+    
+   
     
     
 
@@ -88,22 +131,40 @@ extension MeVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
         var selectedImagefromPicker: UIImage?
-        let imageName = NSUUID().uuidString
+        //let imageName = NSUUID().uuidString
+        let imageName = Auth.auth().currentUser?.uid as! String
         let storage = Storage.storage()
-        let storageRef = storage.reference().child("profileImage").child("\(imageName).png")
+        //let storageRef = storage.reference().child("profileImage").child("\(imageName).png")
+        let storageRef = storage.reference().child("profileImage").child("\(imageName)")
         
+     
         if let editedImage = info["UIImagePickerControllerEditedImage"]  {
             selectedImagefromPicker = editedImage as? UIImage
         }else if let originalImage = info["UIImagePickerControllerOriginalImage"] {
             selectedImagefromPicker = originalImage as? UIImage
         }
         
-        
         profileImage.image = selectedImagefromPicker
         
-        if let uploaddata = UIImagePNGRepresentation(profileImage.image!){
+        //
+//        guard let imagedata = UIImageJPEGRepresentation(selectedImagefromPicker!, 0.7) else { return }
+//        let metaData = StorageMetadata()
+//        metaData.contentType = "jpeg"
+//
+//        storageRef.putData(imagedata, metadata: metaData) { (metaData, error) in
+//            if error == nil, metaData != nil {
+//                let url = metaData?.downloadURL()?.absoluteString
+//
+//            }
+//        }
+        //
+        if let uploaddata = UIImageJPEGRepresentation(profileImage.image!, 0.6){
+        //if let uploaddata = UIImagePNGRepresentation(profileImage.image!){
+        
+                    let metaData = StorageMetadata()
+                    metaData.contentType = "image/jpg"
             
-            storageRef.putData(uploaddata, metadata: nil, completion: { (metadata, error) in
+            storageRef.putData(uploaddata, metadata: metaData, completion: { (metadata, error) in
                 guard let metadata = metadata else { return}
                 let downloadURL = metadata.downloadURL()?.absoluteString
                 
@@ -137,5 +198,9 @@ extension MeVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     }
         
     
+    
+}
+
+extension MeVC: UITextFieldDelegate{
     
 }

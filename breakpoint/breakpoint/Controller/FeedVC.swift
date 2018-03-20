@@ -47,22 +47,29 @@ extension FeedVC: UITableViewDelegate, UITableViewDataSource {
         { return UITableViewCell() }
         //let image = UIImage(named: "defaultProfileImage")
         let message = messageArray[indexPath.row]
+        
         //
-
+        
         DataService.instance.getUsername(forUID: message.senderId) { (returnedUsername) in
             DataService.instance.getProfile(forUID: message.senderId, handler: { (getProfile) in
-                //let url = NSURL(string: getProfile)!
-                //let data = NSData(contentsOf: url as URL)!
-                //let image = UIImage(data: data as Data)
-                let image = UIImage(named: "defaultProfileImage")
+            
+                let imageChecker  = getProfile
                 
-                cell.configureCell(profileImage: image!, email: returnedUsername, content: message.content)
+                if imageChecker != ""{
+                    let url = NSURL(string: imageChecker)
+                    ImageService.getImages(withURL: (((url! as URL) as URL) as URL) as URL, completion: { (profimage) in
+                        cell.configureCell(profileImage: profimage!, email: returnedUsername, content: message.content)
+                    })
+                }else {
+                   let image = UIImage(named: "defaultProfileImage")
+                    
+                    cell.configureCell(profileImage: image!, email: returnedUsername, content: message.content)
+                }
+ 
             })
-           // cell.configureCell(profileImage: image!, email: returnedUsername, content: message.content)
+
         }
-//
-       
-        
+
         return cell
     }
 }

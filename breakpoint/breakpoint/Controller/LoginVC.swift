@@ -34,6 +34,10 @@ class LoginVC: UIViewController {
                 if success{
                     self.dismiss(animated: true, completion: nil)
                 } else {
+                    
+                    let alert = UIAlertController(title: "Wrong Password", message: nil, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
                     print(String(describing: loginError?.localizedDescription))
                 }
                 AuthService.instance.registerUser(withEmail: self.emailTextField.text!, andPassword: self.passwordTextField.text!, userCreateComplete: { (success, registrationError) in

@@ -12,6 +12,7 @@
 		D24E49322058C92B002196E6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24E49312058C92B002196E6 /* User.swift */; };
 		D252042920523D4A00CB483F /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D252042820523D4A00CB483F /* UserCell.swift */; };
 		D252042B2052810B00CB483F /* GroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D252042A2052810B00CB483F /* GroupCell.swift */; };
+		D258C3C82060F1E800AD89E7 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = D258C3C72060F1E800AD89E7 /* ImageCache.swift */; };
 		D25D0DFC2050F5DB009C716B /* MeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25D0DFB2050F5DB009C716B /* MeVC.swift */; };
 		D25D0DFE2050FD7E009C716B /* CreatePostVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25D0DFD2050FD7E009C716B /* CreatePostVC.swift */; };
 		D25D0E012051146E009C716B /* UIViewExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25D0E002051146E009C716B /* UIViewExt.swift */; };
@@ -30,6 +31,8 @@
 		D2600495204FB28600996F0F /* InsetTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2600494204FB28600996F0F /* InsetTextField.swift */; };
 		D2600497204FB59700996F0F /* ShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2600496204FB59700996F0F /* ShadowView.swift */; };
 		D2600499204FBA9800996F0F /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2600498204FBA9800996F0F /* AuthService.swift */; };
+		D262EAE3205A4819008058C4 /* CircleImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D262EAE2205A4819008058C4 /* CircleImage.swift */; };
+		D262EAE5205A4C25008058C4 /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = D262EAE4205A4C25008058C4 /* Cache.swift */; };
 		D2688FBC20550B9A000E8579 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2688FBB20550B9A000E8579 /* Group.swift */; };
 		D2688FBE2055164E000E8579 /* GroupFeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2688FBD2055164E000E8579 /* GroupFeedCell.swift */; };
 		D2688FC0205516CF000E8579 /* GroupFeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2688FBF205516CF000E8579 /* GroupFeedVC.swift */; };
@@ -44,6 +47,7 @@
 		D24E49312058C92B002196E6 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		D252042820523D4A00CB483F /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		D252042A2052810B00CB483F /* GroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupCell.swift; sourceTree = "<group>"; };
+		D258C3C72060F1E800AD89E7 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		D25D0DFB2050F5DB009C716B /* MeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeVC.swift; sourceTree = "<group>"; };
 		D25D0DFD2050FD7E009C716B /* CreatePostVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostVC.swift; sourceTree = "<group>"; };
 		D25D0E002051146E009C716B /* UIViewExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExt.swift; sourceTree = "<group>"; };
@@ -64,6 +68,8 @@
 		D2600494204FB28600996F0F /* InsetTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsetTextField.swift; sourceTree = "<group>"; };
 		D2600496204FB59700996F0F /* ShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowView.swift; sourceTree = "<group>"; };
 		D2600498204FBA9800996F0F /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		D262EAE2205A4819008058C4 /* CircleImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleImage.swift; sourceTree = "<group>"; };
+		D262EAE4205A4C25008058C4 /* Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
 		D2688FBB20550B9A000E8579 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		D2688FBD2055164E000E8579 /* GroupFeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupFeedCell.swift; sourceTree = "<group>"; };
 		D2688FBF205516CF000E8579 /* GroupFeedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupFeedVC.swift; sourceTree = "<group>"; };
@@ -95,6 +101,7 @@
 			children = (
 				D25D0E002051146E009C716B /* UIViewExt.swift */,
 				D26BE60020564FE700A10EC9 /* UIViewControllerExt.swift */,
+				D262EAE4205A4C25008058C4 /* Cache.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -165,6 +172,7 @@
 			children = (
 				D260048D204FA1B300996F0F /* DataService.swift */,
 				D2600498204FBA9800996F0F /* AuthService.swift */,
+				D258C3C72060F1E800AD89E7 /* ImageCache.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -178,6 +186,7 @@
 				D252042820523D4A00CB483F /* UserCell.swift */,
 				D252042A2052810B00CB483F /* GroupCell.swift */,
 				D2688FBD2055164E000E8579 /* GroupFeedCell.swift */,
+				D262EAE2205A4819008058C4 /* CircleImage.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -327,6 +336,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D258C3C82060F1E800AD89E7 /* ImageCache.swift in Sources */,
 				D25D0E012051146E009C716B /* UIViewExt.swift in Sources */,
 				D25D0E03205122CE009C716B /* FeedCell.swift in Sources */,
 				D25D0DFC2050F5DB009C716B /* MeVC.swift in Sources */,
@@ -334,8 +344,10 @@
 				D2600490204FB1AA00996F0F /* AuthVC.swift in Sources */,
 				D26BE60120564FE700A10EC9 /* UIViewControllerExt.swift in Sources */,
 				D260047A204F984500996F0F /* GroupVC.swift in Sources */,
+				D262EAE3205A4819008058C4 /* CircleImage.swift in Sources */,
 				D2688FC0205516CF000E8579 /* GroupFeedVC.swift in Sources */,
 				D2688FBE2055164E000E8579 /* GroupFeedCell.swift in Sources */,
+				D262EAE5205A4C25008058C4 /* Cache.swift in Sources */,
 				D2600492204FB1F900996F0F /* LoginVC.swift in Sources */,
 				D2600499204FBA9800996F0F /* AuthService.swift in Sources */,
 				D2600476204F984500996F0F /* AppDelegate.swift in Sources */,

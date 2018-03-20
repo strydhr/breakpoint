@@ -20,7 +20,7 @@ class AuthService{
                 return
             }
             
-            let userData = ["provider": user.providerID, "email": user.email]
+            let userData = ["provider": user.providerID, "email": user.email, "profileImage": ""]
             DataService.instance.createDBUser(uid: user.uid, userData: userData)
             userCreateComplete(true, nil)
         }
@@ -36,6 +36,7 @@ class AuthService{
             loginComplete(true, nil)
         }
     }
+  
 }
 
 

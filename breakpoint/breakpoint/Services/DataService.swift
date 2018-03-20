@@ -69,6 +69,9 @@ class DataService{
         }
         
     }
+//    func uploadProfileImageType2(){
+//        
+//    }
     
     func getProfile(forUID uid: String, handler: @escaping(_ profile: String) -> ()){
         REF_USERS.observeSingleEvent(of: .value) { (profileSnapshot) in
@@ -76,13 +79,19 @@ class DataService{
             for user in profileSnapshot {
                 if user.key == uid {
                     //handler(user.childSnapshot(forPath: "email").value as! String)
-                    handler(user.childSnapshot(forPath: "profileImage").value as! String)
+                    handler((user.childSnapshot(forPath: "profileImage").value as? String)!)
+                    
                     
                 }
             }
         }
         
     }
+    func addProfileUsername(withUID uid: String, username: String){
+        REF_USERS.child(uid).updateChildValues(["username": username])
+        
+    }
+    
     
     func getUsersProfile(forUID uid: String, handler: @escaping (_ profile:[User]) ->()){
         var userArray = [User]()
