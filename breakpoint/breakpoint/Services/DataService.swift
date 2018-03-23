@@ -69,9 +69,24 @@ class DataService{
         }
         
     }
-//    func uploadProfileImageType2(){
-//        
-//    }
+    func registeredEmailChecker(forEmail checker: String, handle: @escaping(_ emailArray: [String]) -> ()) {
+        var emailArray = [String]()
+        REF_USERS.observe(.value) { (emailSnap) in
+            
+            guard let emailSnap = emailSnap.children.allObjects as? [DataSnapshot] else {return}
+            for emails in emailSnap  {
+                
+                let email = emails.childSnapshot(forPath: "email").value as! String
+                
+                if email.contains(checker) == true {
+                    emailArray.append(email)
+                }
+                
+            }
+            handle(emailArray)
+        }
+
+    }
     
     func getProfile(forUID uid: String, handler: @escaping(_ profile: String) -> ()){
         REF_USERS.observeSingleEvent(of: .value) { (profileSnapshot) in

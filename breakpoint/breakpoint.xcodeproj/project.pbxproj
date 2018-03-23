@@ -13,11 +13,13 @@
 		D252042920523D4A00CB483F /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D252042820523D4A00CB483F /* UserCell.swift */; };
 		D252042B2052810B00CB483F /* GroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D252042A2052810B00CB483F /* GroupCell.swift */; };
 		D258C3C82060F1E800AD89E7 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = D258C3C72060F1E800AD89E7 /* ImageCache.swift */; };
+		D25B92962064DD70001B0758 /* RecoverPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25B92952064DD70001B0758 /* RecoverPasswordVC.swift */; };
 		D25D0DFC2050F5DB009C716B /* MeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25D0DFB2050F5DB009C716B /* MeVC.swift */; };
 		D25D0DFE2050FD7E009C716B /* CreatePostVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25D0DFD2050FD7E009C716B /* CreatePostVC.swift */; };
 		D25D0E012051146E009C716B /* UIViewExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25D0E002051146E009C716B /* UIViewExt.swift */; };
 		D25D0E03205122CE009C716B /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25D0E02205122CE009C716B /* FeedCell.swift */; };
 		D25D0E062051248E009C716B /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25D0E052051248E009C716B /* Message.swift */; };
+		D2600417206370A400DECD22 /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2600416206370A400DECD22 /* SignUpVC.swift */; };
 		D2600476204F984500996F0F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2600475204F984500996F0F /* AppDelegate.swift */; };
 		D2600478204F984500996F0F /* FeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2600477204F984500996F0F /* FeedVC.swift */; };
 		D260047A204F984500996F0F /* GroupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2600479204F984500996F0F /* GroupVC.swift */; };
@@ -48,11 +50,13 @@
 		D252042820523D4A00CB483F /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		D252042A2052810B00CB483F /* GroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupCell.swift; sourceTree = "<group>"; };
 		D258C3C72060F1E800AD89E7 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
+		D25B92952064DD70001B0758 /* RecoverPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoverPasswordVC.swift; sourceTree = "<group>"; };
 		D25D0DFB2050F5DB009C716B /* MeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeVC.swift; sourceTree = "<group>"; };
 		D25D0DFD2050FD7E009C716B /* CreatePostVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostVC.swift; sourceTree = "<group>"; };
 		D25D0E002051146E009C716B /* UIViewExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExt.swift; sourceTree = "<group>"; };
 		D25D0E02205122CE009C716B /* FeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
 		D25D0E052051248E009C716B /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		D2600416206370A400DECD22 /* SignUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
 		D2600472204F984500996F0F /* breakpoint.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = breakpoint.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2600475204F984500996F0F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D2600477204F984500996F0F /* FeedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedVC.swift; sourceTree = "<group>"; };
@@ -163,6 +167,8 @@
 				D25D0DFD2050FD7E009C716B /* CreatePostVC.swift */,
 				D21AB8CC205180360054C957 /* CreateGroupVC.swift */,
 				D2688FBF205516CF000E8579 /* GroupFeedVC.swift */,
+				D2600416206370A400DECD22 /* SignUpVC.swift */,
+				D25B92952064DD70001B0758 /* RecoverPasswordVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -342,10 +348,12 @@
 				D25D0DFC2050F5DB009C716B /* MeVC.swift in Sources */,
 				D252042B2052810B00CB483F /* GroupCell.swift in Sources */,
 				D2600490204FB1AA00996F0F /* AuthVC.swift in Sources */,
+				D25B92962064DD70001B0758 /* RecoverPasswordVC.swift in Sources */,
 				D26BE60120564FE700A10EC9 /* UIViewControllerExt.swift in Sources */,
 				D260047A204F984500996F0F /* GroupVC.swift in Sources */,
 				D262EAE3205A4819008058C4 /* CircleImage.swift in Sources */,
 				D2688FC0205516CF000E8579 /* GroupFeedVC.swift in Sources */,
+				D2600417206370A400DECD22 /* SignUpVC.swift in Sources */,
 				D2688FBE2055164E000E8579 /* GroupFeedCell.swift in Sources */,
 				D262EAE5205A4C25008058C4 /* Cache.swift in Sources */,
 				D2600492204FB1F900996F0F /* LoginVC.swift in Sources */,

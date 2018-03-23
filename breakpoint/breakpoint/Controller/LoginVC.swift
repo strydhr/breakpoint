@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class LoginVC: UIViewController {
 
@@ -34,25 +35,33 @@ class LoginVC: UIViewController {
                 if success{
                     self.dismiss(animated: true, completion: nil)
                 } else {
-                    
-                    let alert = UIAlertController(title: "Wrong Password", message: nil, preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-                    self.present(alert, animated: true, completion: nil)
-                    print(String(describing: loginError?.localizedDescription))
+                  
+                    Auth.auth().fetchProviders(forEmail: self.emailTextField.text!, completion: { (stringArray, error) in
+                        if error != nil {
+                            print(error!)
+                        }else{
+                          
+                            if stringArray == nil {
+                                print("No such email registered")
+                                let noEmailRegAlert = UIAlertController(title: "Login Error", message: "No such email registered", preferredStyle: .alert)
+                                noEmailRegAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                                self.present(noEmailRegAlert, animated: true, completion: nil)
+                            } else {
+                                print("Password is invalid")
+                                let wrongPasswordAlert = UIAlertController(title: "Login Error", message: "Password entered is invalid", preferredStyle: .alert)
+                                wrongPasswordAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                                self.present(wrongPasswordAlert, animated: true, completion: nil)
+                            }
+                        }
+                    })
+
                 }
-                AuthService.instance.registerUser(withEmail: self.emailTextField.text!, andPassword: self.passwordTextField.text!, userCreateComplete: { (success, registrationError) in
-           
-                    if success {
-                        AuthService.instance.loginUser(withEmail: self.emailTextField.text!, andPassword: self.passwordTextField.text! , loginComplete: { (success, nil) in
-                            print("User Registered!!")
-                            self.dismiss(animated: true, completion: nil)
-                        })
-                    }else {
-                        print(String(describing: registrationError?.localizedDescription))
-                    }
-                })
             })
         }
+    }
+    
+    @IBAction func pwdRecoveryBtnPressed(_ sender: Any) {
+        present((storyboard?.instantiateViewController(withIdentifier: "recoveryVC"))!, animated: true, completion: nil)
     }
     
 }
