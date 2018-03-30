@@ -17,6 +17,7 @@ class GroupVC: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         groupTableView.delegate = self
         groupTableView.dataSource = self
+        //self.hideKeyboardWhenTappedElsewhere()
         
     }
     
@@ -24,7 +25,7 @@ class GroupVC: UIViewController {
         super.viewDidAppear(animated)
         DataService.instance.REF_GROUPS.observe(.value) { (snapshot) in
             DataService.instance.getAllGroup { (returnedGroupsArray) in
-                self.groupsArray = returnedGroupsArray
+                self.groupsArray = returnedGroupsArray 
                 self.groupTableView.reloadData()
             }
         }

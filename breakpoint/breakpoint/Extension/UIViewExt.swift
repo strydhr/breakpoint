@@ -25,4 +25,17 @@ extension UIView {
             self.frame.origin.y += deltaY
         }, completion: nil)
     }
+
+}
+
+extension UIViewController {
+    func hideKeyboardWhenTappedElsewhere(){
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard(){
+        view.endEditing(true)
+    }
 }

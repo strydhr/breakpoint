@@ -44,6 +44,8 @@ class GroupFeedVC: UIViewController {
         tableView.estimatedRowHeight = 0
         tableView.estimatedSectionHeaderHeight = 0
         tableView.estimatedSectionHeaderHeight = 0
+        
+        self.hideKeyboardWhenTappedElsewhere()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -100,7 +102,20 @@ extension GroupFeedVC: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "groupFeedCell", for: indexPath) as? GroupFeedCell else {return UITableViewCell() }
         let message = groupMessages[indexPath.row]
         DataService.instance.getUsername(forUID: message.senderId) { (email) in
-            cell.configureCell(profileImage: UIImage(named: "defaultProfileImage")!, email: email, content: message.content)
+            //
+            DataService.instance.getProfile(forUID: message.senderId, handler: { (imageProfile) in
+                let imageChecker = imageProfile
+                if imageChecker != "" {
+                    let url = NSURL(string: imageChecker)
+                    ImageService.getImages(withURL: url! as URL, completion: { (userImage) in
+                        cell.configureCell(profileImage: userImage!, email: email, content: message.content)
+                    })
+                }else{
+                    
+                    cell.configureCell(profileImage: UIImage(named: "defaultProfileImage")!, email: email, content: message.content)
+                }
+            })
+            //cell.configureCell(profileImage: UIImage(named: "defaultProfileImage")!, email: email, content: message.content)
         }
         
         

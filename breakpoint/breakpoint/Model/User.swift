@@ -9,37 +9,23 @@
 import Foundation
 
 class User {
-    //private var _uid: String
-    private var _email: String
-    private var _profileImage: String
     
-//    var uid:String{
-//        return _uid
-//    }
-    
-    var email: String {
-        return _email
-    }
-    var profileImage: String {
-        return _profileImage
-    }
-    
-//    init(dictionary: [String: Any]){
-//        self.email = dictionary["email"] as? String
-//        self.profileImage = dictionary["profileImage"] as? String
-//    }
-    
-    //private var _description: String
-    
+    private var _key: String
+    private var _senderId: String
 
-//    var decription: String{
-//        return _description
-//    }
     
-    init(email: String, profileImage: String){
-        //self._uid = uid
-        self._email = email
-        self._profileImage = profileImage
-       // self._description = desciption
+    var key: String {
+        return _key
+    }
+    var senderId: String {
+        return _senderId
+    }
+
+    
+    init(key: String, senderId: String){
+        
+        self._key = key
+        self._senderId = senderId
+       
     }
 }

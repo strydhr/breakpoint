@@ -19,17 +19,28 @@ class SignUpVC: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.hideKeyboardWhenTappedElsewhere()
     }
 
     @IBAction func signUpBtnPressed(_ sender: Any) {
         if emailTextField.text != nil && passwordTextField.text != nil {
             AuthService.instance.registerUser(withEmail: emailTextField.text!, andPassword: passwordTextField.text!, userCreateComplete: { (success, error) in
                 if success {
-                    AuthService.instance.loginUser(withEmail: self.emailTextField.text!, andPassword: self.passwordTextField.text!, loginComplete: { (success, nil) in
-                        print("user Registered")
-                        let meVC =  self.storyboard?.instantiateViewController(withIdentifier: "MeVc")
-                        self.presentDetail(meVC!)
+                    
+                    Auth.auth().currentUser?.sendEmailVerification(completion: { (error) in
+                        if error != nil{
+                            print("error")
+                        }
+                        let verifyEmailAlert = UIAlertController(title: "Email Verification" , message: "An email have been sent to your email to verify your account", preferredStyle: .alert)
+                        verifyEmailAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                        self.present(verifyEmailAlert, animated: true, completion: nil)
                     })
+                    
+//                    AuthService.instance.loginUser(withEmail: self.emailTextField.text!, andPassword: self.passwordTextField.text!, loginComplete: { (success, nil) in
+//                        print("user Registered")
+//                        let meVC =  self.storyboard?.instantiateViewController(withIdentifier: "MeVc")
+//                        self.presentDetail(meVC!)
+//                    })
                 }else{
                     if (self.passwordTextField.text?.count)! > 5 {
                         //code if password is fine

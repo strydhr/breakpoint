@@ -33,6 +33,7 @@ class CreateGroupVC: UIViewController {
         tableView.dataSource = self
         addEmailTextField.delegate = self
         addEmailTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+        self.hideKeyboardWhenTappedElsewhere()
     }
     
     override func viewDidAppear(_ animated: Bool) {

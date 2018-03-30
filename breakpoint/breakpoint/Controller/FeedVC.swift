@@ -72,4 +72,12 @@ extension FeedVC: UITableViewDelegate, UITableViewDataSource {
 
         return cell
     }
+    
+    //
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let viewUserVC = storyboard?.instantiateViewController(withIdentifier: "viewUserVC") as? ViewUserVC else { return }
+        viewUserVC.initUserData(forMessage: messageArray[indexPath.row])
+        presentDetail(viewUserVC)
+    }
+    
 }

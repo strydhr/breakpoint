@@ -12,6 +12,8 @@
 		D24E49322058C92B002196E6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24E49312058C92B002196E6 /* User.swift */; };
 		D252042920523D4A00CB483F /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D252042820523D4A00CB483F /* UserCell.swift */; };
 		D252042B2052810B00CB483F /* GroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D252042A2052810B00CB483F /* GroupCell.swift */; };
+		D2547D222068B2F400348AA1 /* KeyboardLayoutConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2547D212068B2F400348AA1 /* KeyboardLayoutConstraint.swift */; };
+		D2547D242068C19600348AA1 /* ViewUserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2547D232068C19600348AA1 /* ViewUserVC.swift */; };
 		D258C3C82060F1E800AD89E7 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = D258C3C72060F1E800AD89E7 /* ImageCache.swift */; };
 		D25B92962064DD70001B0758 /* RecoverPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25B92952064DD70001B0758 /* RecoverPasswordVC.swift */; };
 		D25D0DFC2050F5DB009C716B /* MeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25D0DFB2050F5DB009C716B /* MeVC.swift */; };
@@ -49,6 +51,8 @@
 		D24E49312058C92B002196E6 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		D252042820523D4A00CB483F /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		D252042A2052810B00CB483F /* GroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupCell.swift; sourceTree = "<group>"; };
+		D2547D212068B2F400348AA1 /* KeyboardLayoutConstraint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardLayoutConstraint.swift; sourceTree = "<group>"; };
+		D2547D232068C19600348AA1 /* ViewUserVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewUserVC.swift; sourceTree = "<group>"; };
 		D258C3C72060F1E800AD89E7 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		D25B92952064DD70001B0758 /* RecoverPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoverPasswordVC.swift; sourceTree = "<group>"; };
 		D25D0DFB2050F5DB009C716B /* MeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeVC.swift; sourceTree = "<group>"; };
@@ -106,6 +110,7 @@
 				D25D0E002051146E009C716B /* UIViewExt.swift */,
 				D26BE60020564FE700A10EC9 /* UIViewControllerExt.swift */,
 				D262EAE4205A4C25008058C4 /* Cache.swift */,
+				D2547D212068B2F400348AA1 /* KeyboardLayoutConstraint.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -169,6 +174,7 @@
 				D2688FBF205516CF000E8579 /* GroupFeedVC.swift */,
 				D2600416206370A400DECD22 /* SignUpVC.swift */,
 				D25B92952064DD70001B0758 /* RecoverPasswordVC.swift */,
+				D2547D232068C19600348AA1 /* ViewUserVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -318,6 +324,9 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-breakpoint/Pods-breakpoint-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
@@ -325,6 +334,9 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
@@ -364,9 +376,11 @@
 				D21AB8CD205180360054C957 /* CreateGroupVC.swift in Sources */,
 				D2600497204FB59700996F0F /* ShadowView.swift in Sources */,
 				D25D0DFE2050FD7E009C716B /* CreatePostVC.swift in Sources */,
+				D2547D242068C19600348AA1 /* ViewUserVC.swift in Sources */,
 				D2600478204F984500996F0F /* FeedVC.swift in Sources */,
 				D2600495204FB28600996F0F /* InsetTextField.swift in Sources */,
 				D24E49322058C92B002196E6 /* User.swift in Sources */,
+				D2547D222068B2F400348AA1 /* KeyboardLayoutConstraint.swift in Sources */,
 				D260048E204FA1B300996F0F /* DataService.swift in Sources */,
 				D25D0E062051248E009C716B /* Message.swift in Sources */,
 			);

@@ -11,7 +11,7 @@ import Firebase
 
 class CreatePostVC: UIViewController {
 
-    @IBOutlet weak var userProfileImage: UIImageView!
+    @IBOutlet weak var userProfileImage: CircleImage!
     
     @IBOutlet weak var emailLable: UILabel!
     
@@ -25,12 +25,27 @@ class CreatePostVC: UIViewController {
         // Do any additional setup after loading the view.
         textField.delegate = self
         sendBtn.bindToKeyboard()
+        self.hideKeyboardWhenTappedElsewhere()
         
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.emailLable.text = Auth.auth().currentUser?.email
+        DataService.instance.getProfile(forUID: (Auth.auth().currentUser?.uid)!) { (getImage) in
+            let imageChecker = getImage
+            
+            if imageChecker != "" {
+                let url = NSURL(string: imageChecker)!
+                ImageService.getImages(withURL: url as URL, completion: { (profileImage) in
+                    self.userProfileImage.image = profileImage
+                })
+                
+            }else{
+                self.userProfileImage.image = UIImage(named:"defaultProfileImage")
+                
+            }
+        }
     }
 
     @IBAction func closeBtnPressed(_ sender: Any) {
@@ -56,7 +71,11 @@ class CreatePostVC: UIViewController {
 
 extension CreatePostVC: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
+        if textField.text != nil && textField.text != "Hey there, say something..." {
+            textField.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        }else{
         textField.text = ""
         textField.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        }
     }
 }

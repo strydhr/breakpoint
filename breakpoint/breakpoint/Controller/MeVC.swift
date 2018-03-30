@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import FBSDKLoginKit
 
 
 
@@ -23,6 +24,8 @@ class MeVC: UIViewController {
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var editBtn: UIButton!
     
+    @IBOutlet weak var editDescBtn: UIButton!
+    @IBOutlet weak var descriptionTextField: UITextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,8 +35,12 @@ class MeVC: UIViewController {
         profileImage.isUserInteractionEnabled = true
         
         usernameTextField.delegate = self
-        
         editBtn.isHidden = true
+        descriptionTextField.delegate = self
+        editDescBtn.isHidden = true
+        self.hideKeyboardWhenTappedElsewhere()
+        
+        
         
     }
     override func viewDidAppear(_ animated: Bool) {
@@ -41,7 +48,9 @@ class MeVC: UIViewController {
         self.emailLabel.text = Auth.auth().currentUser?.email
         //
         usernameTextField.addTarget(self, action: #selector(editfield), for: .editingChanged)
-        //let storage = Storage.storage()
+        
+     
+       
         DataService.instance.getProfile(forUID: (Auth.auth().currentUser?.uid)!) { (getImage) in
             let imageChecker = getImage
             
@@ -49,23 +58,21 @@ class MeVC: UIViewController {
                 let url = NSURL(string: imageChecker)!
                 ImageService.getImages(withURL: url as URL, completion: { (profileImage) in
                     self.profileImage.image = profileImage
+                    
                 })
-//                let data = NSData(contentsOf: url as URL)!
-//                self.profileImage.image = UIImage(data: data as Data)
                 
             }else{
                 self.profileImage.image = UIImage(named:"defaultProfileImage")
              
             }
-
-          
-           
         }
-       
+        DataService.instance.getProfileUsername(forUID: (Auth.auth().currentUser?.uid)!) { (username) in
+            self.usernameTextField.text = username
+        }
+        DataService.instance.getProfileDescription(forUID: (Auth.auth().currentUser?.uid)!) { (description) in
+            self.descriptionTextField.text = description
+        }
         
-   
-        
-        //
     }
     
     @objc func editfield(){
@@ -77,15 +84,22 @@ class MeVC: UIViewController {
         }
     }
     
+    
     @IBAction func editBtnPressed(_ sender: Any) {
         if usernameTextField.text != "" {
             DataService.instance.addProfileUsername(withUID: (Auth.auth().currentUser?.uid)!, username: usernameTextField.text!)
+            editBtn.isHidden = true
         }
     
-        //usernameTextField.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(backgroundTapped)))
     }
     
-   
+    @IBAction func editDescBtnPressed(_ sender: Any) {
+        if descriptionTextField.text != "" {
+            DataService.instance.addProfileDescription(withUID: (Auth.auth().currentUser?.uid)!, description: descriptionTextField.text!)
+            editDescBtn.isHidden = true
+        }
+    }
+    
     
     
 
@@ -97,6 +111,8 @@ class MeVC: UIViewController {
                 try Auth.auth().signOut()
                 let authVC = self.storyboard?.instantiateViewController(withIdentifier: "AuthVC") as? AuthVC
                 self.present(authVC!, animated: true, completion: nil)
+                FBSDKAccessToken.setCurrent(nil)
+                FBSDKLoginManager().logOut()
             } catch{
                 print(error)
                 
@@ -143,23 +159,8 @@ extension MeVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
         }else if let originalImage = info["UIImagePickerControllerOriginalImage"] {
             selectedImagefromPicker = originalImage as? UIImage
         }
-        
-        profileImage.image = selectedImagefromPicker
-        
-        //
-//        guard let imagedata = UIImageJPEGRepresentation(selectedImagefromPicker!, 0.7) else { return }
-//        let metaData = StorageMetadata()
-//        metaData.contentType = "jpeg"
-//
-//        storageRef.putData(imagedata, metadata: metaData) { (metaData, error) in
-//            if error == nil, metaData != nil {
-//                let url = metaData?.downloadURL()?.absoluteString
-//
-//            }
-//        }
-        //
-        if let uploaddata = UIImageJPEGRepresentation(profileImage.image!, 0.6){
-        //if let uploaddata = UIImagePNGRepresentation(profileImage.image!){
+
+        if let uploaddata = UIImageJPEGRepresentation(selectedImagefromPicker!, 0.6){
         
                     let metaData = StorageMetadata()
                     metaData.contentType = "image/jpg"
@@ -171,22 +172,19 @@ extension MeVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
                 DataService.instance.uploadProfileImage(withUID: (Auth.auth().currentUser?.uid)!, imageFile: downloadURL!, withDetail: nil, imageCreated: { (success) in
                     if success {
                         print("it works")
+                        DataService.instance.getProfile(forUID: (Auth.auth().currentUser?.uid)!, handler: { (getImage) in
+                            let url = NSURL(string: getImage)!
+                            ImageService.getImages(withURL: url as URL, completion: { (profileImage) in
+                                self.profileImage.image = profileImage
+                                
+                            })
+                        })
                     }else{
                         print("madamada")
                     }
                 })
             })
         }
-        
-        
-        
-//        DataService.instance.uploadProfileImage(withUID: (Auth.auth().currentUser?.uid)!, imageFile: profileImage, withDetail: nil) { (success) in
-//            if success {
-//                print("i works")
-//            }else{
-//                print("no workie")
-//            }
-//        }
        
         
         dismiss(animated: true, completion: nil)
@@ -203,4 +201,22 @@ extension MeVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
 
 extension MeVC: UITextFieldDelegate{
     
+}
+extension MeVC: UITextViewDelegate{
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        descriptionTextField.text = ""
+        descriptionTextField.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+//        editDescBtn.isHidden = false
+
+    }
+    func textViewDidChange(_ textView: UITextView) {
+        if descriptionTextField.text == ""{
+        
+            editDescBtn.isHidden = true
+        }else{
+            editDescBtn.isHidden = false
+        }
+       
+    }
+   
 }

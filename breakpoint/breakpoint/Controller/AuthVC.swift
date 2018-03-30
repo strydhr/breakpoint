@@ -8,8 +8,9 @@
 
 import UIKit
 import Firebase
+import FBSDKLoginKit
 
-class AuthVC: UIViewController {
+class AuthVC: UIViewController{
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,10 +30,44 @@ class AuthVC: UIViewController {
     }
     
 
-    @IBAction func logininWithGplusBtnPressed(_ sender: Any) {
-    }
+  
     
     @IBAction func logininWithFbBtnPressed(_ sender: Any) {
+       print("123131")
+        FBSDKLoginManager().logIn(withReadPermissions: ["email", "public_profile"], from: self) { (result, error) in
+            if error != nil {
+                print("nondi")
+                print(error!)
+                return
+            }
+            print("nondo")
+            FBSDKGraphRequest(graphPath: "/me", parameters: ["fields": "id, name, email"]).start(completionHandler: { (connection, result, error) in
+                if error != nil {
+                    print(error!)
+                    return
+                }
+               
+                self.loginWithFB()
+            })
+            
+        }
+        
     }
     
+    func loginWithFB(){
+        
+        let accessToken = FBSDKAccessToken.current()
+        guard let accessTokenString = accessToken?.tokenString else { return }
+        let credential = FacebookAuthProvider.credential(withAccessToken: accessTokenString)
+        Auth.auth().signIn(with: credential, completion: { (user, error) in
+            if error != nil {
+                print("error")
+            }else{
+               
+                let userData = ["provider": user?.providerID, "email": user?.email]
+                DataService.instance.createDBUser(uid: (user?.uid)!, userData: userData)
+                self.dismiss(animated: true, completion: nil)
+            }
+        })
+    }
 }
